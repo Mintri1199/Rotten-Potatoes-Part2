@@ -8,7 +8,7 @@ const methodOverride = require("method-override")
 const reviews = require('./controllers/reviews');
 const port =  process.env.PORT || 3000;
 const comments = require('./controllers/comments')
-
+const movies = require('./controllers/movies')
 
 
 
@@ -18,6 +18,7 @@ app.engine("handlebars", exphbs({defaultLayout: "main"}))
 app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(methodOverride('_method'))
+app.use(movies)
 app.use(reviews)
 app.use(comments)
 
