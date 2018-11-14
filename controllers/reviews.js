@@ -15,19 +15,23 @@ const Comment = require('../models/comment.js')
 // });
 
 // New
-app.get("/reviews/new", (req, res) => {
-    res.render('reviews-new', {});
+app.get("/movies/:movieId/reviews/new", (req, res) => {
+    res.render('reviews-new', {movieId: req.params.movieId});
 })
 
 // Create
-app.post('/reviews', (req, res) => {
-    Review.create(req.body)
-    .then((review) => {
-        console.log(review)
-        // Grave accents. not single quotes
-        res.redirect(`/reviews/${review._id}`) // Redirect to reviews/:id
-    }).catch((err) => {
-        console.log(err.message)
+// taken from Edwin Cloud's repo
+// Bug: Can't redirect
+app.post('/movies/:movieId/reviews', (req, res) => {
+    // if(req.body['title'] == "" || req.body['description'] == ''){
+    //     res.redirect(`/movies/${req.params.movieId}`);
+    //     return
+    // }
+    Review.create(req.body).then(review => {
+        console.log('redirecting')
+        res.redirect(`/movies/${req.params.movieId}`)
+    }).catch((err) =>{
+        console.log('error: ', err.message);
     })
 })
 

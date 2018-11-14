@@ -4,7 +4,6 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../index');
 const should = chai.should();
-// Don't include this because it create modelOVerrideError
 const Review = require('../model/Review');
 const sampleReview = {
     'title': "Super Sweet Review",

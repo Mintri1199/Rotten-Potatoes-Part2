@@ -1,11 +1,15 @@
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-        <form method="POST", action="/reviews">
+        <form method="POST", action="/movies/{{movieId}}/reviews">
+            <input type="hidden" name="movieId" value="{{movieId}}">
+            <h1>{{movieId}}</h1>
             {{> reviews-form}}
             <!-- Button -->
             <div class="form-group">
+                <!-- This line of code was taken from Edwin Cloud's repo -->
+                <input class="btn btn-primary" type="button" value="Cancel" onclick="history.back(-1)">
                 <button class="btn btn-primary" type="submit">Save Review</button>
-            </div>
+            </div>        
         </form>
     </div>
 </div>
